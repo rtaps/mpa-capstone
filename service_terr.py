@@ -31,10 +31,17 @@ block_groups = block_groups.to_crs(epsg=2913)
 
 # Join the block groups onto the service territory
 
-service_blockgrps = geopandas.sjoin(block_groups,
+service_blockgrps_o = geopandas.sjoin(block_groups,
                                     service_territory,
                                     how="inner",
-                                    op='intersects')
+                                    op='overlaps')
+
+service_blockgrps_w = geopandas.sjoin(block_groups,
+                                    service_territory,
+                                    how="inner",
+                                    op='within')
+
+service_blockgrps = service_blockgrps_o.append(service_blockgrps_w)
 
 service_blockgrps = service_blockgrps.drop(columns=['index_right'])
 
