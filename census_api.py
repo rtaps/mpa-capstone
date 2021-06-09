@@ -13,7 +13,12 @@ out_file = 'data-'+var_file
 
 var_info = pd.read_csv(var_file)
 
-var_name = [n+"E" for n in var_info['variable']]
+var_info['variable'] = var_info['variable'] + 'E'
+var_info = var_info.set_index('variable')
+var_map = var_info['name']
+var_name = list(var_info.index)
+
+#var_name = [n+"E" for n in var_info['variable']]
 var_list = ['NAME']+var_name
 var_string = ','.join(var_list)
 
@@ -41,9 +46,12 @@ colnames = row_list[0]
 datarows = row_list[1:]
 
 attain = pd.DataFrame(columns=colnames,data=datarows)
+attain = attain.rename(columns=var_map)
 attain.set_index('NAME',inplace=True)
 
 # Concatenate the state county etc
 # GEOID
+
+attain['GEOID'] = attain['state']+attain['county']+attain['tract']+attain['block group']
 
 attain.to_csv(out_file)
