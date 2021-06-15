@@ -8,6 +8,7 @@ Created on Wed Jun  2 23:25:24 2021
 # Do a spatial join and write to gpkg to display block groups in the territory
 
 import geopandas
+import pandas as pd
 
 # Census Block Groups
     
@@ -50,3 +51,15 @@ service_blockgrps.to_csv('service_territory_blockgroups.csv')
 service_blockgrps.to_file('service_blockgroups.gpkg',
                           layer='service_territory',
                           driver='GPKG')
+
+drop = 'drop-block-groups.csv'
+bg_todrop = pd.read_csv(drop,dtype=str)
+bg_todrop = list(bg_todrop['GEOID'])
+
+# Trying to drop these from the main dataframe 
+bg_tokeep = service_blockgrps['GEOID'].isin(bg_todrop) == False
+bg_service = service_blockgrps[ bg_tokeep ]
+
+bg_service.to_file('final-bg-territory.gpkg',
+                   layer='service_territory',
+                   driver='GPKG')

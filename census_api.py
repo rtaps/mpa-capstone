@@ -8,7 +8,7 @@ Created on Mon Jun  7 14:19:06 2021
 import requests
 import pandas as pd
 
-var_file = 'census-variables-1.csv'
+var_file = 'census-variables-5.csv'
 out_file = 'data-'+var_file
 
 var_info = pd.read_csv(var_file)
@@ -18,7 +18,6 @@ var_info = var_info.set_index('variable')
 var_map = var_info['name']
 var_name = list(var_info.index)
 
-#var_name = [n+"E" for n in var_info['variable']]
 var_list = ['NAME']+var_name
 var_string = ','.join(var_list)
 
