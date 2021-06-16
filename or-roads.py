@@ -15,6 +15,16 @@ import geopandas
 # Not a blank pandas dataframe
 # good application of an f string
 
+co_ids = ['009','067','051','071','005','047','053']
+#zip_id = 'zip://tl_2019_41'+co_ids+'_roads.zip'
+
+for n in co_ids:
+    names = f"zip://tl_2019_41{co_ids}_roads.zip"
+
+    
+    
+
+#%%
 columbia_roads = 'zip://tl_2019_41009_roads.zip'
 washington_roads = 'zip://tl_2019_41067_roads.zip'
 multnomah_roads = 'zip://tl_2019_41051_roads.zip'

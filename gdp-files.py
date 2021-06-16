@@ -19,3 +19,13 @@ subst_data = 'Electric_Substations2020.gdb'
 substations = geopandas.read_file(subst_data,driver='OpenFileGDB')
 
 substations.to_file('or_substations.gpkg',layer='substations',driver='GPKG')
+
+ejscreen_data = 'EJSCREEN_2019_USPR.gdb.zip'
+
+ejscreen = geopandas.read_file(ejscreen_data,driver='OpenFileGDB')
+
+state = ['OR']
+# Need help on this!!
+or_ej = ejscreen['ST_ABBREV'].isin(state)
+
+#ejscreen.to_file('ejscreen-data.gpkg',layer='ejscreen',driver='GPKG')

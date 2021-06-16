@@ -48,9 +48,6 @@ attain = pd.DataFrame(columns=colnames,data=datarows)
 attain = attain.rename(columns=var_map)
 attain.set_index('NAME',inplace=True)
 
-# Concatenate the state county etc
-# GEOID
-
 attain['GEOID'] = attain['state']+attain['county']+attain['tract']+attain['block group']
 
 attain.to_csv(out_file)
