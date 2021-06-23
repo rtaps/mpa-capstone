@@ -7,7 +7,7 @@ Created on Wed Jun  9 15:07:31 2021
 
 import requests
 import pandas as pd
-
+import geopandas
 
 api = "https://developer.nrel.gov/api/alt-fuel-stations/v1.json"
 
@@ -48,5 +48,22 @@ stations = pd.DataFrame().from_records(station_list)
 
 stations.to_csv('or-ev-stations.csv')
 
-#%%
-terr = 'final-bg-territory.gpkg'
+# read the file I just made 
+charging = 'or-ev-charging.gpkg'
+
+charg_stat = geopandas.read_file(charging)
+
+terr = 'service_territory.gpkg'
+
+territory = geopandas.read_file(terr)
+
+stations_bg = geopandas.sjoin(charg_stat,
+                              territory,
+                              how='inner',
+                              op="intersects")
+
+stations_bg = stations_bg.drop(columns=['index_right'])
+
+stations_bg.to_file('ev-stations.gpkg',layer='charg_stat',driver='GPKG')
+
+stations_bg.to_csv('ev-stations.csv')

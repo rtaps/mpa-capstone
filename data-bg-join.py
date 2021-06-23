@@ -6,24 +6,34 @@ Created on Tue Jun 15 20:13:23 2021
 """
 
 import pandas as pd
+import geopandas
 
-census_2 = 'data-census-variables-2.csv'
+#census_2 = 'data-census-variables-2.csv'
 
-census = pd.read_csv(census_2,dtype=str)
+census_inc = 'income-data.csv'
 
-hh_inc = census[['hhinc_<10', 'hhinc_10-15', 'hhinc_15-20', 'hhinc_20-25', 'hhinc_25-30', 'hhinc_30-35', 'hhinc_35-40', 'hhinc_40-45', 'hhinc_45-50', 'hhinc_50-60', 'hhinc_60-75','hhinc_med','GEOID']]
+census = pd.read_csv(census_inc,dtype=str)
 
-grid = 'blockgroup_grid.csv'
+grid = 'blockgroup_grid2.gpkg'
 
-bg = pd.read_csv(grid,dtype=str)
+bg = geopandas.read_file(grid)
 
-bg = bg.drop(columns=['Unnamed: 0'])
+#bg = bg.drop(columns=['Unnamed: 0'])
 
-merged = hh_inc.merge(bg,on='GEOID',how='inner',indicator=True)
+merged = bg.merge(census,on='GEOID',how='left',indicator=True)
 
 merged = merged.drop(columns=['_merge'])
 
-merged.to_csv('initial-merged-data.csv')
+merged = merged.fillna(0)
+
+trim = merged['hhinc_low'].to_frame()
+
+trim['x'] = merged['geometry'].apply(lambda pt:pt[0].x)
+trim['y'] = merged['geometry'].apply(lambda pt:pt[0].y)
+
+trim.index.name = 'grid_point'
+
+trim.to_csv('income-merged-data.csv')
 
 #%%
 #hh_vars = [c for c in census.columns if c.startswith('hhinc_')]
@@ -38,4 +48,4 @@ merged.to_csv('initial-merged-data.csv')
 
 #sub = [c for c in d.columns if c.startswith('ed_')]
 
-
+#data = data.astype(float)

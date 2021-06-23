@@ -12,7 +12,7 @@ import pandas as pd
 
 # Census Block Groups
     
-or_bg_counties = 'zip://tl_2020_41_bg.zip'
+or_bg_counties = 'zip://tl_2019_41_bg.zip'
 
 block_groups = geopandas.read_file(or_bg_counties)
 

@@ -1,1 +1,22 @@
 ﻿variable,description,table,name
+B08301_001,Total:,MEANS OF TRANSPORTATION TO WORK,tran_tot
+B08301_002,"Car, truck, or van:",MEANS OF TRANSPORTATION TO WORK,tran_veh
+B08301_003,Drove alone ,MEANS OF TRANSPORTATION TO WORK,tran_alone
+B08301_004,Carpooled:,MEANS OF TRANSPORTATION TO WORK,tran_pool
+B08301_005,In 2-person carpool ,MEANS OF TRANSPORTATION TO WORK,tran_2-pe
+B08301_006,In 3-person carpool ,MEANS OF TRANSPORTATION TO WORK,tran_3-pe
+B08301_007,In 4-person carpool ,MEANS OF TRANSPORTATION TO WORK,tran_4-pe
+B08301_008,In 5- or 6-person carpool ,MEANS OF TRANSPORTATION TO WORK,tran_5- pe
+B08301_009,In 7-or-more-person carpool ,MEANS OF TRANSPORTATION TO WORK,tran_7-pe
+B08301_010,Public transportation (excluding taxicab):,MEANS OF TRANSPORTATION TO WORK,tran_pub
+B08301_011,Bus,MEANS OF TRANSPORTATION TO WORK,tran_bus
+B08301_012,Subway or elevated rail,MEANS OF TRANSPORTATION TO WORK,tran_rail
+B08301_013,Long-distance train or commuter rail,MEANS OF TRANSPORTATION TO WORK,tran_lrail
+B08301_014,"Light rail, streetcar or trolley (carro público in Puerto Rico)",MEANS OF TRANSPORTATION TO WORK,tran_trol
+B08301_015,Ferryboat ,MEANS OF TRANSPORTATION TO WORK,tran_boat
+B08301_016,Taxicab ,MEANS OF TRANSPORTATION TO WORK,tran_cab
+B08301_017,Motorcycle ,MEANS OF TRANSPORTATION TO WORK,tran_mot
+B08301_018,Bicycle ,MEANS OF TRANSPORTATION TO WORK,tran_bic
+B08301_019,Walked ,MEANS OF TRANSPORTATION TO WORK,tran_walk
+B08301_020,Other means ,MEANS OF TRANSPORTATION TO WORK,tran_oth
+B08301_021,Worked from home,MEANS OF TRANSPORTATION TO WORK,tran_home

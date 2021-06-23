@@ -20,12 +20,13 @@ substations = geopandas.read_file(subst_data,driver='OpenFileGDB')
 
 substations.to_file('or_substations.gpkg',layer='substations',driver='GPKG')
 
-ejscreen_data = 'EJSCREEN_2019_USPR.gdb.zip'
+terr = 'service_territory.gpkg'
 
-ejscreen = geopandas.read_file(ejscreen_data,driver='OpenFileGDB')
+territory = geopandas.read_file(terr)
 
-state = ['OR']
-# Need help on this!!
-or_ej = ejscreen['ST_ABBREV'].isin(state)
+subst_clip = geopandas.clip(substations,territory['geometry'])
+subst_clip.to_file('substations.gpkg',layer='territory',driver='GPKG')
 
-#ejscreen.to_file('ejscreen-data.gpkg',layer='ejscreen',driver='GPKG')
+#%%
+transm_clip = geopandas.clip(transmission,territory['geometry'])
+transm_clip.to_file('transmission.gpkg',layer='territory',driver='GPKG')
