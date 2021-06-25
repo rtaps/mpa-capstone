@@ -35,6 +35,10 @@ merged1 = bg.merge(to_file,on='GEOID',how='left',indicator=True)
 
 merged1 = merged1.drop(columns=['_merge'])
 
+merged1['race_quint'] = pd.qcut(merged1['race_prop'], 5, labels=False)
+
+merged1['tenu_quint'] = pd.qcut(merged1['tenu_p-rent'], 5, labels=False)
+
 merged1.to_file('race-tenure.gpkg',layer='bg',driver='GPKG')
 
 #race = file['race_prop']
@@ -55,6 +59,8 @@ merged1.to_file('race-tenure.gpkg',layer='bg',driver='GPKG')
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import geopandas 
+import numpy as np
 
 filename = 'data-census-variables-2.csv'
 
@@ -63,7 +69,7 @@ use_type = {'GEOID':str}
 file2 = pd.read_csv(filename,dtype=use_type)
 
 # Proportion of low income people ie 60 percent of the 2019 median income in oregon
-high_inc = file2['hhinc_45-50'] + file2['hhinc_50-60'] + file2['hhinc_60-75'] + file2['hhinc_75-100'] + file2['hhinc_100-125'] + file2['hhinc_125-150'] + file2['hhinc_150-200'] + file2['hhinc_>200']
+high_inc = file2['hhinc_40-45'] + file2['hhinc_45-50'] + file2['hhinc_50-60'] + file2['hhinc_60-75'] + file2['hhinc_75-100'] + file2['hhinc_100-125'] + file2['hhinc_125-150'] + file2['hhinc_150-200'] + file2['hhinc_>200']
 file2['hhinc_low'] = file2['hhinc_tot'] - high_inc
 file2['hhinc_prop'] = file2['hhinc_low']/file2['hhinc_tot']
 
@@ -83,21 +89,11 @@ merged2 = bg.merge(to_file,on='GEOID',how='left',indicator=True)
 
 merged2 = merged2.drop(columns=['_merge'])
 
+merged2['inc_quint'] = pd.qcut(merged2['hhinc_prop'], 5, labels=False)
+
+merged2['assist_quint'] = pd.qcut(merged2['passist_prop'], 5, labels=False)
+
 merged2.to_file('hhinc-passist.gpkg',layer='bg',driver='GPKG')
-
-
-
-fig, ax1 = plt.subplots()
-
-inc = file2['hhinc_']
-bg = file2['county']
-                
-plt.bar(inc,bg)
-fig.suptitle("Title")
-ax1.set_title(None)
-ax1.set_ylabel("Percent low income")
-ax1.set_xlabel("Name")
-fig.tight_layout()
 
 #%%
 
@@ -130,17 +126,26 @@ merged3 = bg.merge(to_file,on='GEOID',how='left',indicator=True)
 
 merged3 = merged3.drop(columns=['_merge'])
 
+merged3['hhlang_quint'] = pd.qcut(merged3['hhlang_prop'], 5, labels=False)
+
 merged3.to_file('hhlang.gpkg',layer='bg',driver='GPKG')
 
 #%%
 
-import pandas as pd
-import matplotlib.pyplot as plt
+# Making the index!!
 
-filename = 'data-census-variables-5.csv'
+race = merged1[['race_quint','GEOID']]
 
-use_type = {'GEOID':str}
+tenure = merged1['tenu_quint']
 
-file5 = pd.read_csv(filename,dtype=use_type)
+inc = merged2['inc_quint'] 
 
-# This file is means of transportation to work
+assist = merged2['assist_quint']
+
+lang = merged3['hhlang_quint']
+
+quints = [race, tenure, inc, assist, lang]
+
+index = pd.DataFrame()
+index = index.join(quints)    
+
