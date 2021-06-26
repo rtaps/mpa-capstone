@@ -35,7 +35,7 @@ Request two API keys, from the following sources:
 ------
 1. Download the PGE Service Territory shapefile – provided by the utility
 
-2a. Census TIGER/Line County Block Group Shapefiles
+2. a) Census TIGER/Line County Block Group Shapefiles
     
     Follow the Web Interface Link at the [Census site](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html);
     
@@ -43,7 +43,7 @@ Request two API keys, from the following sources:
     
     After hitting submit, select Oregon in the 2019 dropdown menu and download the file.
 
-2b. Census TIGER/Line Road Shapefiles
+2. b) Census TIGER/Line Road Shapefiles
 
     Follow the Web Interface Link at the [Census site](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html);
 
