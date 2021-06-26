@@ -14,11 +14,11 @@ The median household income in Oregon in 2019 was $62,818. Our income cutoff mat
 
 This repository contains several scripts that aggregate and analyze data to create an index of underserved communities in the Portland General Electric service territory. This index measures the following proportions at the Census block group level: 
 
-    -Households earning less than 60% of the 2019 Oregon median income; 
-    -People of color; 
-    -Households that receive public assistance;  
-    -Renters; 
-    -People who primarily speak a language other than English.  
+-Households earning less than 60% of the 2019 Oregon median income; 
+-People of color; 
+-Households that receive public assistance;  
+-Renters; 
+-People who primarily speak a language other than English.  
 
 The goal of this script is to establish a uniform index that accounts for the actual demography of the service area when measuring how they intersect. By doing so, PGE can use the index to inform where infrastructure and policy actions should be targeted in communities that do not already have access to resources.  
 
