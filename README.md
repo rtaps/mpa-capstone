@@ -14,11 +14,11 @@ The median household income in Oregon in 2019 was $62,818. Our income cutoff mat
 
 This repository contains several scripts that aggregate and analyze data to create an index of underserved communities in the Portland General Electric service territory. This index measures the following proportions at the Census block group level: 
 
--Households earning less than 60% of the 2019 Oregon median income; 
--People of color; 
--Households that receive public assistance;  
--Renters; 
--People who primarily speak a language other than English.  
+    -Households earning less than 60% of the 2019 Oregon median income; 
+    -People of color; 
+    -Households that receive public assistance;  
+    -Renters; 
+    -People who primarily speak a language other than English.  
 
 The goal of this script is to establish a uniform index that accounts for the actual demography of the service area when measuring how they intersect. By doing so, PGE can use the index to inform where infrastructure and policy actions should be targeted in communities that do not already have access to resources.  
 
@@ -37,7 +37,7 @@ Request two API keys, from the following sources:
 
 2a. Census TIGER/Line County Block Group Shapefiles
     
-    Follow the Web Interface Link at the [Census site](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html),
+    Follow the Web Interface Link at the [Census site](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html);
     
     Select the Year 2019 and the Block Group layer type,
     
@@ -45,19 +45,19 @@ Request two API keys, from the following sources:
 
 2b. Census TIGER/Line Road Shapefiles
 
-    Follow the Web Interface Link at the [Census site](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html),
+    Follow the Web Interface Link at the [Census site](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html);
 
     Select the Year 2019 and the Roads layer type, 
 
     After hitting submit, select Oregon in the 2019 dropdown menu and the county – for multiple counties, you will have to download multiple ZIP files.    
 
-3. [Oregon Metro TriMet Shapefiles]( http://rlisdiscovery.oregonmetro.gov/?resourceId=99&searchTerm=transit)
+3. [Oregon Metro TriMet Shapefiles]( http://rlisdiscovery.oregonmetro.gov/?resourceId=99&searchTerm=transit);
 
     Select “Add to Queue” for the TriMet Bus System routes and stops, as well as the Light Rail lines and stations,
 
     After adding the files, choose “Download Selected” from “My Download Queue” to the left and follow any dialogues that pop up. 
 
-4. [American Community Survey 2019 Data Tables]( https://www.census.gov/data/developers/data-sets/acs-5year.html)
+4. [American Community Survey 2019 Data Tables]( https://www.census.gov/data/developers/data-sets/acs-5year.html);
 
     Select relevant variables from the ACS 5-Year survey and load into one or more CSV files with short descriptive names and longer, detailed names. 
 
